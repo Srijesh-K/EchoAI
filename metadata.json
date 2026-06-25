@@ -1,0 +1,10 @@
+{
+  "name": "AI Chatbot",
+  "description": "A sleek, powerful AI chatbot assistant inspired by Gemini and ChatGPT with multimodal attachments, rich formatting, custom personas, and chat history.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
