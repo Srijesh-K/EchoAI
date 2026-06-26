@@ -35,24 +35,30 @@ function formatMessagesForApi(messages: ChatMessage[]) {
   }));
 }
 
-export default function App() {
-  const [conversations, setConversations] = useState<ChatConversation[]>(() =>
-    loadConversations()
-  );
-  const [activeId, setActiveId] = useState<string | null>(() => {
+function getInitialState(): { conversations: ChatConversation[]; activeId: string } {
+  const loaded = loadConversations();
+  if (loaded.length > 0) {
     const saved = loadActiveConversationId();
-    const loaded = loadConversations();
-    if (saved && loaded.some((c) => c.id === saved)) return saved;
-    return loaded[0]?.id ?? null;
-  });
+    const activeId =
+      saved && loaded.some((c) => c.id === saved) ? saved : loaded[0].id;
+    return { conversations: loaded, activeId };
+  }
+  const initial = createNewConversation();
+  return { conversations: [initial], activeId: initial.id };
+}
+
+export default function App() {
+  const initial = getInitialState();
+  const [conversations, setConversations] = useState<ChatConversation[]>(
+    initial.conversations
+  );
+  const [activeId, setActiveId] = useState<string>(initial.activeId);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
 
   const currentConversation =
-    conversations.find((c) => c.id === activeId) ||
-    conversations[0] ||
-    createNewConversation();
+    conversations.find((c) => c.id === activeId) || conversations[0];
 
   useEffect(() => {
     saveConversations(conversations);
@@ -262,15 +268,20 @@ export default function App() {
     <div className="flex h-screen w-full overflow-hidden bg-[#0A0A0A] text-zinc-100 font-sans antialiased">
       <Sidebar
         conversations={conversations}
-        activeId={activeId || currentConversation.id}
+        activeId={activeId}
         onSelectConversation={setActiveId}
         onNewChat={handleNewChat}
         onDeleteConversation={(id, e) => {
           e.stopPropagation();
           setConversations((prev) => {
             const next = prev.filter((c) => c.id !== id);
+            if (next.length === 0) {
+              const fresh = createNewConversation();
+              setActiveId(fresh.id);
+              return [fresh];
+            }
             if (activeId === id) {
-              setActiveId(next[0]?.id ?? null);
+              setActiveId(next[0].id);
             }
             return next;
           });
@@ -279,8 +290,9 @@ export default function App() {
           updateConversation(id, (c) => ({ ...c, title: newTitle, updatedAt: Date.now() }));
         }}
         onClearAll={() => {
-          setConversations([]);
-          setActiveId(null);
+          const fresh = createNewConversation();
+          setConversations([fresh]);
+          setActiveId(fresh.id);
         }}
         isOpen={sidebarOpen}
         onCloseMobile={() => setSidebarOpen(false)}
