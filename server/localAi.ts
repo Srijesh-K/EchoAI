@@ -565,9 +565,7 @@ I'm not connected to Gemini or ChatGPT — I'm your private, self-hosted AI chat
       const contextMessages = options.messages.slice(-6);
       const hasHistory = contextMessages.length > 2;
 
-      return {
-        text: hasHistory
-          ? `That's an interesting point about "${message.slice(0, 100)}${message.length > 100 ? "..." : ""}".
+      const historyReply = `That's an interesting point about "${message.slice(0, 100)}${message.length > 100 ? "..." : ""}".
 
 Building on our conversation, here's my take:
 
@@ -580,8 +578,9 @@ ${pickVariant(
   message
 )}
 
-**Want better answers?** Install [Ollama](https://ollama.com) and run \`ollama pull llama3.2\` — Echo AI will automatically use it for ChatGPT-quality responses, still with no API keys.`,
-        : `Thanks for your message! Here's how I can help with "${message.slice(0, 80)}${message.length > 80 ? "..." : ""}":
+**Want better answers?** Install [Ollama](https://ollama.com) and run \`ollama pull llama3.2\` — Echo AI will automatically use it for ChatGPT-quality responses, still with no API keys.`;
+
+      const freshReply = `Thanks for your message! Here's how I can help with "${message.slice(0, 80)}${message.length > 80 ? "..." : ""}":
 
 I can provide detailed explanations, write code, draft content, brainstorm ideas, or help you think through a problem step by step.
 
@@ -590,7 +589,10 @@ I can provide detailed explanations, write code, draft content, brainstorm ideas
 - Enable **Search Grounding** for factual or current-event questions
 - Install **Ollama** locally for AI-powered responses without any API keys
 
-What aspect would you like me to focus on?`,
+What aspect would you like me to focus on?`;
+
+      return {
+        text: hasHistory ? historyReply : freshReply,
       };
     }
   }
