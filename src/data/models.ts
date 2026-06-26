@@ -2,21 +2,21 @@ import { ModelOption } from "../types";
 
 export const MODELS: ModelOption[] = [
   {
-    id: "gemini-3.5-flash",
-    name: "Gemini 3.5 Flash",
+    id: "echo-fast",
+    name: "Echo Fast",
     tag: "Recommended",
-    description: "Fast, intelligent, and multimodal model ideal for everyday chats and complex tasks."
+    description: "Quick local responses with smart templates and optional Ollama boost.",
   },
   {
-    id: "gemini-3.1-flash-lite",
-    name: "Gemini 3.1 Flash-Lite",
-    tag: "High Speed",
-    description: "Lightweight model optimized for low latency and ultra-fast responses."
+    id: "echo-balanced",
+    name: "Echo Balanced",
+    tag: "Versatile",
+    description: "Balanced creativity and accuracy for everyday conversations.",
   },
   {
-    id: "gemini-3.1-pro-preview",
-    name: "Gemini 3.1 Pro",
-    tag: "Deep Reasoning",
-    description: "Advanced reasoning and STEM capability for intricate coding and analysis."
-  }
+    id: "echo-deep",
+    name: "Echo Deep",
+    tag: "Detailed",
+    description: "More thorough explanations for complex topics and coding help.",
+  },
 ];

@@ -206,7 +206,7 @@ export const Header: React.FC<HeaderProps> = ({
               ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30 shadow-xs shadow-emerald-500/10"
               : "bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-zinc-200"
           }`}
-          title="Enable Google Search Grounding"
+          title="Enable web search (DuckDuckGo & Wikipedia — no API key)"
         >
           <Globe className={`h-3.5 w-3.5 ${currentConversation.useWebSearch ? "animate-spin [animation-duration:10s]" : ""}`} />
           <span className="hidden sm:inline">Search Grounding</span>

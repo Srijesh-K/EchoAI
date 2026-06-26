@@ -44,7 +44,7 @@ export function saveActiveConversationId(id: string | null): void {
 
 export function createNewConversation(
   personaId = "default",
-  model = "gemini-3.5-flash"
+  model = "echo-fast"
 ): ChatConversation {
   const now = Date.now();
   return {

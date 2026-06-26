@@ -1,10 +1,7 @@
 {
-  "name": "AI Chatbot",
-  "description": "A sleek, powerful AI chatbot assistant inspired by Gemini and ChatGPT with multimodal attachments, rich formatting, custom personas, and chat history.",
+  "name": "Echo AI",
+  "description": "A ChatGPT-style AI chatbot that runs locally without API keys. Supports personas, chat history, web search, and optional Ollama integration.",
   "requestFramePermissions": [
     "microphone"
-  ],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
   ]
 }

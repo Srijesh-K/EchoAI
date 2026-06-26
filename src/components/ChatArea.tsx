@@ -103,7 +103,7 @@ export const ChatArea: React.FC<ChatAreaProps> = ({
                   <div className="h-2 w-2 rounded-full bg-indigo-400 animate-bounce [animation-delay:-0.3s]" />
                   <div className="h-2 w-2 rounded-full bg-indigo-400 animate-bounce [animation-delay:-0.15s]" />
                   <div className="h-2 w-2 rounded-full bg-indigo-400 animate-bounce" />
-                  <span className="ml-2 text-xs font-mono text-zinc-400">Gemini is thinking...</span>
+                  <span className="ml-2 text-xs font-mono text-zinc-400">Echo AI is thinking...</span>
                 </div>
               </div>
             </div>

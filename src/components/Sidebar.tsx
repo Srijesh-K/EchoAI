@@ -274,7 +274,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
             <div className="flex flex-col">
               <span className="text-xs font-medium text-zinc-300">User Session</span>
-              <span className="text-[10px] text-zinc-500">Multimodal Active</span>
+              <span className="text-[10px] text-zinc-500">Local AI · No API Key</span>
             </div>
           </div>
 
